@@ -21,8 +21,8 @@ def cli():
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
     show_default=True,
 )
-@click.option("--tag-prefix", default="v", show_default=True)
-@click.option("--no-tag-prefix", default=False, is_flag=True)
+@click.option("--tag-prefix", default="v", show_default=True, envvar="CR_TAG_PREFIX")
+@click.option("--no-tag-prefix", default=False, is_flag=True, envvar="CR_NO_TAG_PREFIX")
 @click.option("--repo", envvar="GITHUB_REPOSITORY", required=True)
 @click.option(
     "--api-url",
