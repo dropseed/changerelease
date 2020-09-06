@@ -15,6 +15,6 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - --changelog ${{ inputs.changelog }} --tag-prefix ${{ inputs.tag_prefix }}
+    - --changelog ${{ inputs.changelog }} --tag-prefix '${{ inputs.tag_prefix }}'
   env:
     GITHUB_TOKEN: ${{ inputs.github_token }}
