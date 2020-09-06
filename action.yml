@@ -5,8 +5,13 @@ inputs:
     description: 'Path to your CHANGELOG'
     required: false
     default: 'CHANGELOG.md'
+  github_token:
+    description: "A GitHub token that can create and modify releases"
+    required: true
 runs:
   using: docker
   image: Dockerfile
   args:
     - --changelog ${{ inputs.changelog }}
+  env:
+    GITHUB_TOKEN: ${{ inputs.github_token }}
