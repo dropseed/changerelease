@@ -1,6 +1,23 @@
 #!/bin/sh -e
+VERSION="$1"
+
+if [ -z "$VERSION" ]
+then
+    echo "You need to specify a version (ex. '1.0.0')"
+    exit 1
+fi
+
+echo "Updating Dockerfile and pyproject.toml versions"
+sed -E -i "" "s/changerelease==[0-9]+\.[0-9]+\.[0-9]+/changerelease==$VERSION/g" Dockerfile
+sed -E -i "" "s/version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$VERSION\"/g" pyproject.toml
+git add Dockerfile pyproject.toml
+git commit -m "Version $VERSION"
+git tag -a "v$VERSION" -m "v$VERSION"
+
+echo "Publishing to pypi"
 poetry build
 poetry publish
-echo "Git tag and push this version"
-echo "And change the version in Dockerfile"
-echo "And the v1 tag should be moved?"
+
+echo "Moving v1 tag for GitHub Actions"
+git tag -a v1 -m v1 -f
+git push && git push --tags -f
