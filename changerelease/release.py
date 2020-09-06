@@ -2,9 +2,11 @@ import click
 
 
 class Release:
-    def __init__(self, repo, version, requests_session):
+    def __init__(self, repo, tag_prefix, version, requests_session):
         self.repo = repo
+        self.tag_prefix = tag_prefix
         self.version = version
+        self.version_tag = tag_prefix + version
 
         self.requests_session = requests_session
 
@@ -15,7 +17,7 @@ class Release:
 
     def tag_exists(self):
         response = self.requests_session.get(
-            f"/repos/{self.repo}/git/refs/tags/v{self.version}"
+            f"/repos/{self.repo}/git/refs/tags/{self.version_tag}"
         )
         if response.status_code == 404:
             return False
@@ -27,19 +29,19 @@ class Release:
 
     def get(self):
         response = self.requests_session.get(
-            f"/repos/{self.repo}/releases/tags/v{self.version}"
+            f"/repos/{self.repo}/releases/tags/{self.version_tag}"
         )
         if response.status_code == 404:
             return {}
         response.raise_for_status()
         return response.json()
 
-    def create(self, name, contents):
+    def create(self, contents):
         response = self.requests_session.post(
             f"/repos/{self.repo}/releases",
             json={
-                "tag_name": "v" + name,
-                "name": name,
+                "tag_name": self.version_tag,
+                "name": self.version,
                 "body": contents,
                 # TODO prerelease if semver prerelease
             },
@@ -61,11 +63,11 @@ class Release:
                     f"Release for {self.version} does not exist. Creating it...",
                     fg="green",
                 )
-                release_data = self.create(self.version, contents)
+                release_data = self.create(contents)
                 click.echo(release_data["html_url"])
             else:
                 click.secho(
-                    f'Git tag "v{self.version}" not found. A tag needs to be pushed before we can create a release for it.',
+                    f'Git tag "{self.version_tag}" not found. A tag needs to be pushed before we can create a release for it.',
                     fg="red",
                 )
         elif not self.body_matches(contents):

@@ -4,8 +4,6 @@ Sync your GitHub Release notes with your `CHANGELOG.md`.
 
 This tool expects that you follow the [Keep a Changelog](https://keepachangelog.com/) format.
 
-Note that, per [SemVer](https://semver.org/spec/v1.0.0.html#tagging-specification-semvertag), this tool also expects that your git tags are prefixed with a "v". As in, "v3.0.0" and not "3.0.0".
-
 ## Use the GitHub Action
 
 ```yml
@@ -25,6 +23,9 @@ jobs:
     - uses: dropseed/changerelease@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        # optional
+        tag_prefix: v
+        changelog: CHANGELOG.md
 ```
 
 ## Use the Python package
