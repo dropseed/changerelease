@@ -14,7 +14,7 @@ on:
   workflow_dispatch: {}
   push:
     paths: [CHANGELOG.md]
-    branches: [$default-branch]
+    branches: [master]
     tags: ["*"]
 
 jobs:
@@ -22,6 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: dropseed/changerelease
+    - uses: dropseed/changerelease@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+```
 
+## Use the Python package
+
+```sh
+$ pip install changerelease
+$ changerelease sync --repo org/repo --token TOKEN
 ```

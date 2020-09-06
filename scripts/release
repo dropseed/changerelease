@@ -1,0 +1,4 @@
+#!/bin/sh -e
+poetry build
+poetry publish
+echo "Git tag and push this version"

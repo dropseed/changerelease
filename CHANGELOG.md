@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing yet.
 
-## [0.1.0] - 2020-09-05
+## [1.0.0] - 2020-09-05
 
 The first release! Includes the `sync` command which will sync your `CHANGELOG.md` to GitHub Release notes.
 
-[Unreleased]: https://github.com/dropseed/changerelease/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/dropseed/changerelease/releases/tag/v0.1.0
+[Unreleased]: https://github.com/dropseed/changerelease/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/dropseed/changerelease/releases/tag/v1.0.0

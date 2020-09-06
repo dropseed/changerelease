@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "changerelease"
-version = "0.1.0"
+version = "1.0.0"
 description = "Sync GitHub Releases with CHANGELOG.md"
-authors = ["Drave Gaeddert <dave.gaeddert@dropseed.io>"]
+authors = ["Dave Gaeddert <dave.gaeddert@dropseed.io>"]
 license = "MIT"
-homepage = "https://changerelease.dropseed.io"
-documentation = "https://changerelease.dropseed.io"
+# homepage = "https://changerelease.dropseed.io"
+# documentation = "https://changerelease.dropseed.io"
 repository = "https://github.com/dropseed/changerelease"
-keywords = []
+keywords = ["changelog", "github", "release", "changes"]
 
 [tool.poetry.scripts]
 changerelease = "changerelease.cli:cli"
