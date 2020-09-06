@@ -15,7 +15,7 @@ class Release:
 
     def tag_exists(self):
         response = self.requests_session.get(
-            f"/repos/{self.repo}/git/refs/tags/{self.version}"
+            f"/repos/{self.repo}/git/refs/tags/v{self.version}"
         )
         if response.status_code == 404:
             return False
@@ -27,7 +27,7 @@ class Release:
 
     def get(self):
         response = self.requests_session.get(
-            f"/repos/{self.repo}/releases/tags/{self.version}"
+            f"/repos/{self.repo}/releases/tags/v{self.version}"
         )
         if response.status_code == 404:
             return {}
@@ -38,7 +38,7 @@ class Release:
         response = self.requests_session.post(
             f"/repos/{self.repo}/releases",
             json={
-                "tag_name": name,
+                "tag_name": "v" + name,
                 "name": name,
                 "body": contents,
                 # TODO prerelease if semver prerelease

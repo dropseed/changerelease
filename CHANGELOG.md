@@ -13,5 +13,5 @@ Nothing yet.
 
 The first release! Includes the `sync` command which will sync your `CHANGELOG.md` to GitHub Release notes.
 
-[Unreleased]: https://github.com/dropseed/sitechecks/compare/0.1.0...HEAD
-[0.1.0]: https://github.com/dropseed/sitechecks/releases/tag/0.1.0
+[Unreleased]: https://github.com/dropseed/sitechecks/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/dropseed/sitechecks/releases/tag/v0.1.0
