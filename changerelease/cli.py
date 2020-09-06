@@ -19,15 +19,21 @@ def cli():
     "--changelog",
     default="CHANGELOG.md",
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
+    show_default=True,
 )
-@click.option("--tag-prefix", default="v")
-@click.option("--repo", default=lambda: os.environ.get("GITHUB_REPOSITORY", ""))
+@click.option("--tag-prefix", default="v", show_default=True)
+@click.option("--no-tag-prefix", default=False, is_flag=True)
+@click.option("--repo", envvar="GITHUB_REPOSITORY", required=True)
 @click.option(
     "--api-url",
-    default=lambda: os.environ.get("GITHUB_API_URL", "https://api.github.com"),
+    envvar="GITHUB_API_URL",
+    default="https://api.github.com",
 )
-@click.option("--token", default=lambda: os.environ.get("GITHUB_TOKEN", ""))
-def sync(changelog, tag_prefix, repo, api_url, token):
+@click.option("--token", envvar="GITHUB_TOKEN", required=True)
+def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, token):
+    if no_tag_prefix:
+        tag_prefix = ""
+
     requests_session = APISession(base_url=api_url)
     requests_session.headers.update(
         {
