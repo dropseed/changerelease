@@ -11,7 +11,9 @@ Nothing right now.
 
 ## [1.2.0] - 2020-09-06
 
-Allows changelog content for a version to be empty, while still creating a GitHub Release for the tag.
+- Allows changelog content for a version to be empty, while still creating a GitHub Release for the tag.
+- Prints parsed version changelogs
+- Fail if a git tag does not exist for a version
 
 ## [1.1.1] - 2020-09-06
 
