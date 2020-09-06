@@ -58,13 +58,14 @@ class Release:
         if not self.exists():
             if self.tag_exists():
                 click.echo(
-                    f"Release for {self.version} does not exist. Creating it...", fg="green"
+                    f"Release for {self.version} does not exist. Creating it...",
+                    fg="green",
                 )
                 release_data = self.create(self.version, contents)
                 click.echo(release_data["html_url"])
             else:
                 click.secho(
-                    f"Git tag not found for {self.version}. A tag needs to be pushed before we can create a release for it.",
+                    f'Git tag "v{self.version}" not found. A tag needs to be pushed before we can create a release for it.',
                     fg="red",
                 )
         elif not self.body_matches(contents):
