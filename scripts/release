@@ -2,3 +2,4 @@
 poetry build
 poetry publish
 echo "Git tag and push this version"
+echo "And the v1 tag should be moved?"
