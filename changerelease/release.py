@@ -57,7 +57,7 @@ class Release:
     def sync(self, contents):
         if not self.exists():
             if self.tag_exists():
-                click.echo(
+                click.secho(
                     f"Release for {self.version} does not exist. Creating it...",
                     fg="green",
                 )
