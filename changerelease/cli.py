@@ -49,7 +49,6 @@ def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, token):
         version_contents = cl.parse_version_content(version)
         if not version_contents:
             click.secho(f"No content found for version {version}", fg="yellow")
-            continue
 
         release = Release(repo, tag_prefix, version, requests_session)
         release.sync(version_contents)
