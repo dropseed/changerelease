@@ -4,6 +4,7 @@ version = "1.0.0"
 description = "Sync GitHub Releases with CHANGELOG.md"
 authors = ["Dave Gaeddert <dave.gaeddert@dropseed.io>"]
 license = "MIT"
+readme = "README.md"
 # homepage = "https://changerelease.dropseed.io"
 # documentation = "https://changerelease.dropseed.io"
 repository = "https://github.com/dropseed/changerelease"
