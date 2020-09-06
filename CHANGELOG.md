@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet.
+Nothing right now.
+
+## [1.1.0] - 2020-09-06
+
+Adds a `tag_prefix` option so that tags don't have to start with a "v". You can now use this with tags like "1.0.0" in addition to "v1.0.0".
 
 ## [1.0.0] - 2020-09-05
 
 The first release! Includes the `sync` command which will sync your `CHANGELOG.md` to GitHub Release notes.
 
 [Unreleased]: https://github.com/dropseed/changerelease/compare/v1.0.0...HEAD
+[1.1.0]: https://github.com/dropseed/changerelease/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/dropseed/changerelease/releases/tag/v1.0.0
