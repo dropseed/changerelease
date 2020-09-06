@@ -2,4 +2,5 @@
 poetry build
 poetry publish
 echo "Git tag and push this version"
+echo "And change the version in Dockerfile"
 echo "And the v1 tag should be moved?"
