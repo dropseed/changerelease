@@ -18,5 +18,5 @@ runs:
     - --changelog ${{ inputs.changelog }}
   env:
     CR_TAG_PREFIX: ${{ inputs.tag_prefix }}
-    CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == "" }}
+    CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == '' }}
     GITHUB_TOKEN: ${{ inputs.github_token }}
