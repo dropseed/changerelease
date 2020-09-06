@@ -35,12 +35,6 @@ def sync(changelog, repo, api_url, token):
         }
     )
 
-    response = requests_session.get("/user")
-    if not response.ok:
-        click.secho(f"Failed to authenticate using token '{token}'", fg="red")
-        exit(1)
-    click.echo(f"Acting on behalf of {response.json()['login']}")
-
     cl = Changelog(changelog)
 
     for version in cl.versions:
