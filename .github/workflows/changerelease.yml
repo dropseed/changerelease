@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     paths: [CHANGELOG.md]
-    branches: [$default-branch]
+    branches: [master]
     tags: ["*"]
 
 jobs:
