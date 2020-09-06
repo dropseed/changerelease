@@ -44,17 +44,32 @@ def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, token):
 
     cl = Changelog(changelog)
 
+    outline = "-" * 80
+
+    results = []
+
     for version in cl.versions:
         click.secho(f"\nSyncing version {version}", bold=True)
         version_contents = cl.parse_version_content(version)
-        if not version_contents:
-            click.secho(f"No content found for version {version}", fg="yellow")
+
+        click.echo(f"{outline}\n{version_contents or '(empty)'}\n{outline}")
 
         release = Release(repo, tag_prefix, version, requests_session)
-        release.sync(version_contents)
+        message, synced = release.sync(version_contents)
 
-    # TODO fail if tag doesn't exist yet? (continue w/ others though)
-    click.secho(f"\nGitHub releases on {repo} synced with {cl.path}", fg="green")
+        click.secho(message, fg="green" if synced else "red")
+
+        results.append(synced)
+
+    if all(results):
+        click.secho(
+            f"\nSynced {len(results)} GitHub Releases on {repo} with {cl.path}",
+            fg="green",
+        )
+    else:
+        failed = [x for x in results if not x]
+        click.secho(f"Failed to sync {len(failed)} versions", fg="red")
+        exit(1)
 
 
 if __name__ == "__main__":

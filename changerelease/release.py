@@ -1,6 +1,3 @@
-import click
-
-
 class Release:
     def __init__(self, repo, tag_prefix, version, requests_session):
         self.repo = repo
@@ -57,24 +54,21 @@ class Release:
         return response.json()
 
     def sync(self, contents):
+        message = ""
+        synced = True
+
         if not self.exists():
             if self.tag_exists():
-                click.secho(
-                    f"Release for {self.version} does not exist. Creating it...",
-                    fg="green",
-                )
+                message = f"Release for {self.version} does not exist. Creating it..."
                 release_data = self.create(contents)
-                click.echo(release_data["html_url"])
+                message += "\n" + release_data["html_url"]
             else:
-                click.secho(
-                    f'Git tag "{self.version_tag}" not found. A tag needs to be pushed before we can create a release for it.',
-                    fg="red",
-                )
+                message = f'Git tag "{self.version_tag}" not found. A tag needs to be pushed before we can create a release for it.'
+                synced = False
         elif not self.body_matches(contents):
-            click.secho(
-                f"Release for {self.version} exists but the changelog doesn't match. Updating the release...",
-                fg="green",
-            )
+            message = f"Release for {self.version} exists but the changelog doesn't match. Updating the release..."
             self.update_body(contents)
         else:
-            click.echo("No change")
+            message = "Release is up-to-date"
+
+        return (message, synced)
