@@ -1,0 +1,2 @@
+#!/bin/sh -e
+poetry run black . --check --exclude "/(snapshots|\.venv|\.git|\.venv)/"

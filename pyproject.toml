@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "changerelease"
+version = "0.1.0"
+description = "Sync GitHub Releases with CHANGELOG.md"
+authors = ["Drave Gaeddert <dave.gaeddert@dropseed.io>"]
+license = "MIT"
+homepage = "https://changerelease.dropseed.io"
+documentation = "https://changerelease.dropseed.io"
+repository = "https://github.com/dropseed/changerelease"
+keywords = []
+
+[tool.poetry.scripts]
+changerelease = "changerelease.cli:cli"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.24.0"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+ipdb = "^0.13.3"
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

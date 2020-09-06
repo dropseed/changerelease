@@ -1,0 +1,12 @@
+name: changerelease
+description: Run changerelease
+inputs:
+  changelog:
+    description: 'Path to your CHANGELOG'
+    required: false
+    default: 'CHANGELOG.md'
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - --changelog ${{ inputs.changelog }}
