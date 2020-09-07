@@ -20,6 +20,7 @@ def cli():
     default="CHANGELOG.md",
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
     show_default=True,
+    envvar="CR_CHANGELOG",
 )
 @click.option("--tag-prefix", default="v", show_default=True, envvar="CR_TAG_PREFIX")
 @click.option("--no-tag-prefix", default=False, is_flag=True, envvar="CR_NO_TAG_PREFIX")
@@ -29,8 +30,9 @@ def cli():
     envvar="GITHUB_API_URL",
     default="https://api.github.com",
 )
+@click.option("--limit", default=-1, envvar="CR_LIMIT")
 @click.option("--token", envvar="GITHUB_TOKEN", required=True)
-def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, token):
+def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, limit, token):
     if no_tag_prefix:
         tag_prefix = ""
 
@@ -48,7 +50,12 @@ def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, token):
 
     results = []
 
-    for version in cl.versions:
+    versions = cl.versions
+    if limit > -1:
+        click.echo(f"Limiting to {limit} of {len(versions)} versions")
+        versions = versions[:limit]
+
+    for version in versions:
         click.secho(f"\nSyncing version {version}", bold=True)
         version_contents = cl.parse_version_content(version)
 

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing right now.
 
+## [1.3.0] - 2020-09-07
+
+- Added a `--limit` option to only sync recent versions by default in a GitHub Action
+
 ## [1.2.0] - 2020-09-06
 
 - Allows changelog content for a version to be empty, while still creating a GitHub Release for the tag.

@@ -11,12 +11,15 @@ inputs:
   github_token:
     description: "A GitHub token that can create and modify releases"
     required: true
+  limit:
+    description: 'Limit syncing to the latest X versions'
+    default: 5
 runs:
   using: docker
   image: Dockerfile
-  args:
-    - --changelog ${{ inputs.changelog }}
   env:
+    CR_CHANGELOG: ${{ inputs.changelog }}
     CR_TAG_PREFIX: ${{ inputs.tag_prefix }}
     CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == '' }}
+    CR_LIMIT: ${{ inputs.limit }}
     GITHUB_TOKEN: ${{ inputs.github_token }}
