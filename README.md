@@ -1,8 +1,14 @@
 # changerelease
 
-Sync your GitHub Release notes with your `CHANGELOG.md`.
+Automatically update your GitHub Releases from `CHANGELOG.md`.
 
 This tool expects that you follow the [Keep a Changelog](https://keepachangelog.com/) format.
+
+To use it:
+
+1. [Keep a Changelog](https://keepachangelog.com/)
+1. Git tag your versions
+1. Let the changerelease GitHub Action automatically keep your GitHub Releases updated
 
 ## Use the GitHub Action
 
