@@ -5,11 +5,9 @@ SKIP_VERSIONS = ["Unreleased"]
 
 
 class Changelog:
-    def __init__(self, path):
+    def __init__(self, path, contents):
         self.path = path
-        with open(self.path, "r") as f:
-            self.contents = f.read()
-
+        self.contents = contents
         self.versions = self.parse_versions()
 
     def parse_versions(self):

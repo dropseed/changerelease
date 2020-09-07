@@ -1,5 +1,6 @@
 import os
 import re
+import base64
 
 import requests
 import click
@@ -18,10 +19,10 @@ def cli():
 @click.option(
     "--changelog",
     default="CHANGELOG.md",
-    type=click.Path(exists=True, file_okay=True, dir_okay=False),
     show_default=True,
     envvar="CR_CHANGELOG",
 )
+@click.option("--remote-changelog", is_flag=True, envvar="CR_REMOTE_CHANGELOG")
 @click.option("--tag-prefix", default="v", show_default=True, envvar="CR_TAG_PREFIX")
 @click.option("--no-tag-prefix", default=False, is_flag=True, envvar="CR_NO_TAG_PREFIX")
 @click.option("--repo", envvar="GITHUB_REPOSITORY", required=True)
@@ -32,7 +33,9 @@ def cli():
 )
 @click.option("--limit", default=-1, envvar="CR_LIMIT")
 @click.option("--token", envvar="GITHUB_TOKEN", required=True)
-def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, limit, token):
+def sync(
+    changelog, remote_changelog, tag_prefix, no_tag_prefix, repo, api_url, limit, token
+):
     if no_tag_prefix:
         tag_prefix = ""
 
@@ -44,7 +47,18 @@ def sync(changelog, tag_prefix, no_tag_prefix, repo, api_url, limit, token):
         }
     )
 
-    cl = Changelog(changelog)
+    if remote_changelog:
+        click.echo(f"Fetching current {changelog} from the {repo} repo")
+        response = requests_session.get(f"/repos/{repo}/contents/{changelog}")
+        response.raise_for_status()
+        changelog_contents = base64.b64decode(response.json()["content"]).decode(
+            "utf-8"
+        )
+    else:
+        with open(changelog, "r") as f:
+            changelog_contents = f.read()
+
+    cl = Changelog(changelog, changelog_contents)
 
     outline = "-" * 80
 

@@ -14,6 +14,9 @@ inputs:
   limit:
     description: 'Limit syncing to the latest X versions'
     default: 5
+  remote_changelog:
+    description: 'Get the CHANGELOG using the GitHub API (does not require a cloned repo)'
+    default: true
 runs:
   using: docker
   image: Dockerfile
@@ -22,4 +25,5 @@ runs:
     CR_TAG_PREFIX: ${{ inputs.tag_prefix }}
     CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == '' }}
     CR_LIMIT: ${{ inputs.limit }}
+    CR_REMOTE_CHANGELOG: ${{ inputs.remote_changelog }}
     GITHUB_TOKEN: ${{ inputs.github_token }}

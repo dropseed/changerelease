@@ -12,6 +12,7 @@ Nothing right now.
 ## [1.3.0] - 2020-09-07
 
 - Added a `--limit` option to only sync recent versions by default in a GitHub Action
+- Added a `--remote-changelog` option so you don't have to have the CHANGELOG file (or cloned repo) to use changerelease
 
 ## [1.2.0] - 2020-09-06
 
