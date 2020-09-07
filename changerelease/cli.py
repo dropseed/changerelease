@@ -70,12 +70,12 @@ def sync(
         versions = versions[:limit]
 
     for version in versions:
-        click.secho(f"\nSyncing version {version}", bold=True)
-        version_contents = cl.parse_version_content(version)
-
-        click.echo(f"{outline}\n{version_contents or '(empty)'}\n{outline}")
-
         release = Release(repo, tag_prefix, version, requests_session)
+        suffix = " (pre-release)" if release.prerelease else ""
+        click.secho(f"\nSyncing version {release.version}{suffix}", bold=True)
+
+        version_contents = cl.parse_version_content(version)
+        click.echo(f"{outline}\n{version_contents or '(empty)'}\n{outline}")
         message, synced = release.sync(version_contents)
 
         click.secho(message, fg="green" if synced else "red")

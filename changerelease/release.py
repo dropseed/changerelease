@@ -1,9 +1,13 @@
+import re
+
+
 class Release:
     def __init__(self, repo, tag_prefix, version, requests_session):
         self.repo = repo
         self.tag_prefix = tag_prefix
         self.version = version
         self.version_tag = tag_prefix + version
+        self.prerelease = bool(re.match("v?\d+\.\d+\.\d+-.+", self.version))
 
         self.requests_session = requests_session
 
@@ -40,7 +44,7 @@ class Release:
                 "tag_name": self.version_tag,
                 "name": self.version,
                 "body": contents,
-                # TODO prerelease if semver prerelease
+                "prerelease": self.prerelease,
             },
         )
         response.raise_for_status()

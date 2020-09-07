@@ -11,6 +11,7 @@ Nothing right now.
 
 ## [1.3.0] - 2020-09-07
 
+- Added automatic pre-release detection
 - Added a `--limit` option to only sync recent versions by default in a GitHub Action
 - Added a `--remote-changelog` option so you don't have to have the CHANGELOG file (or cloned repo) to use changerelease
 
@@ -33,6 +34,7 @@ Adds a `tag_prefix` option so that tags don't have to start with a "v". You can 
 The first release! Includes the `sync` command which will sync your `CHANGELOG.md` to GitHub Release notes.
 
 [Unreleased]: https://github.com/dropseed/changerelease/compare/v1.1.1...HEAD
+[1.3.0]: https://github.com/dropseed/changerelease/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/dropseed/changerelease/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/dropseed/changerelease/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/dropseed/changerelease/compare/v1.0.0...v1.1.0
