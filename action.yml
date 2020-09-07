@@ -1,5 +1,8 @@
 name: changerelease
-description: Run changerelease
+description: Automatically update your GitHub Releases from CHANGELOG.md
+branding:
+  icon: upload-cloud
+  color: white
 inputs:
   changelog:
     description: 'Path to your CHANGELOG'
