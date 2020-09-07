@@ -19,7 +19,6 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - uses: dropseed/changerelease@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
