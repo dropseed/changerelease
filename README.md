@@ -10,6 +10,8 @@ To use it:
 1. Git tag your versions
 1. Let the changerelease GitHub Action automatically keep your GitHub Releases updated
 
+![changerelease screenshot](changerelease.png)
+
 ## Use the GitHub Action
 
 ```yml
