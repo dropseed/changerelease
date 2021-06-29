@@ -41,3 +41,39 @@ jobs:
 $ pip install changerelease
 $ changerelease sync --repo org/repo --token TOKEN
 ```
+
+## What if my changelog isn't in Markdown?
+
+For changelogs written in reStructuredText or another syntax besides Markdown,
+you can run a conversion step before running changerelease.
+This can be a custom rendering script or something like [pandoc](https://pandoc.org/) to convert your changelog to Markdown.
+The only real expectation is that your version names are written in h2 headings (`## {version_name}`).
+
+```yaml
+name: changerelease
+on:
+  workflow_dispatch: {}
+  push:
+    paths: [CHANGELOG.md]
+    branches: [master]
+    tags: ["*"]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Convert to markdown first
+    # https://github.com/pandoc/pandoc-action-example
+    - uses: docker://pandoc/core:2.9
+        with:
+          args: "CHANGELOG.rst -f rst -t markdown -o CR_CHANGELOG.md"
+
+    - uses: dropseed/changerelease@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # optional
+        tag_prefix: v
+        changelog: CR_CHANGELOG.md
+```
