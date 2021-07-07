@@ -66,7 +66,7 @@ jobs:
 
     # Convert to markdown first
     # https://github.com/pandoc/pandoc-action-example
-    - uses: docker://pandoc/core:2.9
+    - uses: docker://pandoc/core:2.14
         with:
           args: "CHANGELOG.rst -f rst -t markdown -o CR_CHANGELOG.md"
 
