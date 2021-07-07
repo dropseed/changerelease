@@ -76,4 +76,5 @@ jobs:
         # optional
         tag_prefix: v
         changelog: CR_CHANGELOG.md
+        remote_changelog: false
 ```
