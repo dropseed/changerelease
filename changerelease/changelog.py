@@ -6,6 +6,7 @@ RE_VERSION_HEADING = r"## "
 RE_VERSION_NAME = r"\[?([^\[\]\s]+)\]?"
 RE_VERSION_CONTENTS = r"([\s\S]+?)"
 RE_LINK_DEFINITIONS = r"\[.+\]: "
+RE_END_STRING = r"\Z"
 RE_VERSION_HEADING_LINE = f"^{RE_VERSION_HEADING}{RE_VERSION_NAME}.*$"
 
 
@@ -22,7 +23,7 @@ class Changelog:
 
     def parse_version_content(self, version):
         matches = re.findall(
-            f"^{RE_VERSION_HEADING}\[?{version}\]?.*${RE_VERSION_CONTENTS}^({RE_VERSION_HEADING}|{RE_LINK_DEFINITIONS})",
+            f"^{RE_VERSION_HEADING}\[?{version}\]?.*${RE_VERSION_CONTENTS}^({RE_VERSION_HEADING}|{RE_LINK_DEFINITIONS}|{RE_END_STRING})",
             self.contents,
             re.MULTILINE,
         )
