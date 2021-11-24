@@ -14,9 +14,10 @@ keywords = ["changelog", "github", "release", "changes"]
 changerelease = "changerelease.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.2"
 requests = "^2.24.0"
 click = "^7.1.2"
+cls-client = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 ipdb = "^0.13.3"
