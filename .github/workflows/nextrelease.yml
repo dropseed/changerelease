@@ -17,7 +17,6 @@ jobs:
     - uses: dropseed/nextrelease@v1
       with:
         prepare_cmd: |
-          sed -i -e "s/changerelease==.*/changerelease==$VERSION/g" Dockerfile
           sed -i -e "s/version = \"[^\"]*\"/version = \"$VERSION\"/g" pyproject.toml
         publish_cmd: |
           poetry publish --build

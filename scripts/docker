@@ -1,3 +1,0 @@
-#!/bin/sh -ex
-docker build -t changerelease .
-docker run -it -v "$(pwd)/CHANGELOG.md":/CHANGELOG.md changerelease $@

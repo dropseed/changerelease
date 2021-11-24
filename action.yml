@@ -21,12 +21,16 @@ inputs:
     description: 'Get the CHANGELOG using the GitHub API (does not require a cloned repo)'
     default: true
 runs:
-  using: docker
-  image: Dockerfile
-  env:
-    CR_CHANGELOG: ${{ inputs.changelog }}
-    CR_TAG_PREFIX: ${{ inputs.tag_prefix }}
-    CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == '' }}
-    CR_LIMIT: ${{ inputs.limit }}
-    CR_REMOTE_CHANGELOG: ${{ inputs.remote_changelog }}
-    GITHUB_TOKEN: ${{ inputs.github_token }}
+  using: composite
+  steps:
+    - run: pip3 install $GITHUB_ACTION_PATH
+      shell: bash
+    - run: changerelease sync
+      shell: bash
+      env:
+        CR_CHANGELOG: ${{ inputs.changelog }}
+        CR_TAG_PREFIX: ${{ inputs.tag_prefix }}
+        CR_NO_TAG_PREFIX: ${{ inputs.tag_prefix == '' }}
+        CR_LIMIT: ${{ inputs.limit }}
+        CR_REMOTE_CHANGELOG: ${{ inputs.remote_changelog }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
