@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "changerelease"
-version = "1.4.1"
+version = "1.5.0"
 description = "Sync GitHub Releases with CHANGELOG.md"
 authors = ["Dave Gaeddert <dave.gaeddert@dropseed.io>"]
 license = "MIT"
