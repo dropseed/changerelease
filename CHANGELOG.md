@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing right now.
 
+## [1.5.0] - 2021-11-24
+
+- Use composite action instead of docker
+- Add CLS client for basic analytics
+- Update pandoc example
+
 ## [1.4.0] - 2021-06-29
 
 Simpler regular expression to accept more changelog styles and conversions from a different syntax (ex. reStructuredText).
@@ -37,7 +43,8 @@ Adds a `tag_prefix` option so that tags don't have to start with a "v". You can 
 
 The first release! Includes the `sync` command which will sync your `CHANGELOG.md` to GitHub Release notes.
 
-[Unreleased]: https://github.com/dropseed/changerelease/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/dropseed/changerelease/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/dropseed/changerelease/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/dropseed/changerelease/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/dropseed/changerelease/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/dropseed/changerelease/compare/v1.1.1...v1.2.0
