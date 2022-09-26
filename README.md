@@ -35,13 +35,6 @@ jobs:
         changelog: CHANGELOG.md
 ```
 
-## Use the Python package
-
-```sh
-$ pip install changerelease
-$ changerelease sync --repo org/repo --token TOKEN
-```
-
 ## What if my changelog isn't in Markdown?
 
 For changelogs written in reStructuredText or another syntax besides Markdown,
