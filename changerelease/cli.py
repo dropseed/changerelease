@@ -1,18 +1,11 @@
 import base64
 
 import click
-import cls_client
 
 from .release import Release
 from .changelog import Changelog
 from .api import APISession
 from . import __version__
-
-
-cls_client.set_project_key("cls_pk_8zTGqaUxvBdWYEgjJpkEfoM2")
-cls_client.set_project_slug("changerelease")
-cls_client.set_version(__version__)
-cls_client.set_ci_tracking_enabled(True)
 
 
 @click.group()
@@ -38,7 +31,6 @@ def cli():
 )
 @click.option("--limit", default=-1, envvar="CR_LIMIT")
 @click.option("--token", envvar="GITHUB_TOKEN", required=True)
-@cls_client.track_command(include_kwargs=["changelog", "remote_changelog", "tag_prefix", "no_tag_prefix", "limit"])
 def sync(
     changelog, remote_changelog, tag_prefix, no_tag_prefix, repo, api_url, limit, token
 ):
