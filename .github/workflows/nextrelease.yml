@@ -18,6 +18,5 @@ jobs:
         prepare_cmd: |
           sed -i -e "s/version = \"[^\"]*\"/version = \"$VERSION\"/g" pyproject.toml
         publish_cmd: |
-          pip3 install -U pip poetry && poetry publish --build --no-interaction
           git tag -a v$VERSION_MAJOR -m v$VERSION_MAJOR -f && git push origin v$VERSION_MAJOR -f
         github_token: ${{ secrets.GITHUB_TOKEN }}
